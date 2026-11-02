@@ -1,0 +1,5 @@
+# Troque pelo seu domínio. O Caddy cuida do HTTPS (Let's Encrypt) sozinho.
+app.desinchamae.com.br {
+	encode gzip
+	reverse_proxy app:3000
+}

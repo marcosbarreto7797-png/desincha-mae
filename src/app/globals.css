@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --fundo: #fffdfc;
+  --texto: #2a2024;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+body {
+  background: var(--fundo);
+  color: var(--texto);
+  -webkit-font-smoothing: antialiased;
+  /* Área de toque confortável e sem zoom acidental em iOS */
+  touch-action: manipulation;
+}
+
+/* Botões sempre com alvo de toque grande (mãe com uma mão só) */
+@layer components {
+  .btn-primario {
+    @apply w-full rounded-2xl bg-marca-500 px-6 py-4 text-lg font-semibold text-white
+           shadow-sm active:bg-marca-600 disabled:opacity-60 transition;
+  }
+  .btn-secundario {
+    @apply w-full rounded-2xl border border-marca-200 bg-white px-6 py-4 text-lg
+           font-semibold text-marca-700 active:bg-marca-50 transition;
+  }
+  .campo {
+    @apply w-full rounded-2xl border border-marca-200 bg-white px-4 py-4 text-lg
+           outline-none focus:border-marca-400;
+  }
+}

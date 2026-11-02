@@ -1,0 +1,15 @@
+node_modules
+.next
+.git
+.gitignore
+npm-debug.log*
+.env
+.env*.local
+.env.production
+coverage
+Dockerfile
+.dockerignore
+deploy
+DEPLOY.md
+README.md
+*.md
