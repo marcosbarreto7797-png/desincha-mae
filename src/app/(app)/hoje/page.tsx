@@ -6,6 +6,7 @@ import { dataBrasilISO, somarDiasISO } from "@/lib/datas";
 import { calcularSequencia } from "@/lib/progresso";
 import { marcarConcluida, desfazerConclusao } from "./acoes";
 import { concluirDesafio } from "@/app/(app)/desafios/acoes";
+import { VideoPlayer } from "@/components/VideoPlayer";
 
 export const dynamic = "force-dynamic";
 
@@ -25,6 +26,7 @@ type ItemHoje = {
     tipo: string | null;
     duracao_min: number | null;
     instrucoes: string | null;
+    video_url: string | null;
   } | null;
 };
 
@@ -63,7 +65,7 @@ export default async function HojePage() {
   if (semana) {
     const { data } = await supabase
       .from("user_plan_items")
-      .select("id, concluido_em, activities(titulo, tipo, duracao_min, instrucoes)")
+      .select("id, concluido_em, activities(titulo, tipo, duracao_min, instrucoes, video_url)")
       .eq("user_week_id", semana.id)
       .eq("data_prevista", hoje)
       .order("id");
@@ -178,6 +180,9 @@ export default async function HojePage() {
                       )}
                     </div>
                   </div>
+                  {a?.video_url && (
+                    <VideoPlayer url={a.video_url} titulo={a.titulo} />
+                  )}
                   {!feito && a?.instrucoes && (
                     <p className="mt-2 text-sm text-neutral-600">{a.instrucoes}</p>
                   )}

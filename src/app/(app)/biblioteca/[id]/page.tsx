@@ -2,6 +2,7 @@ import { redirect, notFound } from "next/navigation";
 import Link from "next/link";
 import { createClient } from "@/lib/supabase/server";
 import type { Exercicio } from "@/types/database";
+import { VideoPlayer } from "@/components/VideoPlayer";
 
 export const dynamic = "force-dynamic";
 
@@ -45,14 +46,7 @@ export default async function ExercicioDetalhe({
       )}
 
       {data.video_url ? (
-        <a
-          href={data.video_url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="btn-primario mt-6 inline-block text-center"
-        >
-          ▶ Assistir ao vídeo
-        </a>
+        <VideoPlayer url={data.video_url} titulo={data.titulo} />
       ) : (
         <p className="mt-6 rounded-2xl border border-dashed border-neutral-200 p-4 text-center text-neutral-400">
           Vídeo em breve.
